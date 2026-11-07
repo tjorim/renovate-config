@@ -4,7 +4,8 @@
     "Shared base for the tjorim repos: schedule, labels, commit style and the ecosystems every repo has."
   ],
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
   ],
   "ignorePresets": [
     "group:monorepos",

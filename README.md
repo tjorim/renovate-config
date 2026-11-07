@@ -47,6 +47,9 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
   dependencies. Remove the rule in `repos/<repo>.json` to start tracking them.
 - **`windows` crates group** in `ElevenClock-rs` matches `windows` and `windows-*`; Dependabot's pattern
   `windows-*` missed the `windows` crate itself.
+- **GitHub Actions are pinned by commit hash** (`helpers:pinGitHubActionDigests` in `default.json`), with the version as
+  a comment, matching the repos that already do this by hand. In a repo that still uses tags, Renovate's first run opens
+  one `pin-dependencies` PR with the pins (24 in `scat`'s dry-run); after that it keeps the hashes updated.
 - **Security updates are not configured here.** Keep Dependabot security updates / alerts on in each repo.
 
 ## Checked
@@ -58,7 +61,7 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
 
 ## Not checked
 
-- Anything involving a GitHub token: label application, PR creation, `lockFileMaintenance` PR contents, the
+- Label application, PR creation, `lockFileMaintenance` PR contents, the
   dependency dashboard, GitHub Actions lookups (the dry-runs hit the API rate limit).
 - Dry-runs for daynest, travel, worktime, custom-mygrid, python-mygrid-*, ha-mygrid-voltbridge, ha-mygrid-core.
 - Submodule updates (`submodules.json`) in a real run: with a token, the app needs access to the submodule repos if they are private.
