@@ -122,13 +122,14 @@
     },
     {
       "description": [
-        "Dependabot never touched node-version in workflows. Some workflows (Pebble) deliberately stay on an older Node major than the app, so the Node version is chosen by hand."
+        "Dependabot never touched node-version or python-version in workflows. Workflows deliberately use other runtime versions than the app (Pebble stays on an older Node, libraries test their oldest supported Python), so these versions are chosen by hand."
       ],
       "matchManagers": [
         "github-actions"
       ],
       "matchDepNames": [
-        "node"
+        "node",
+        "python"
       ],
       "enabled": false
     },
