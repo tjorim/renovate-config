@@ -110,12 +110,25 @@
     },
     {
       "description": [
-        "Dependabot never bumped the packageManager field, engines or [build-system] requirements; keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
+        "Dependabot never bumped the packageManager field, engines, [build-system] requirements or requires-python (the minimum supported Python is a policy choice, not a dependency); keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
       ],
       "matchDepTypes": [
         "packageManager",
         "engines",
-        "build-system.requires"
+        "build-system.requires",
+        "requires-python"
+      ],
+      "enabled": false
+    },
+    {
+      "description": [
+        "Dependabot never touched node-version in workflows. Some workflows (Pebble) deliberately stay on an older Node major than the app, so the Node version is chosen by hand."
+      ],
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepNames": [
+        "node"
       ],
       "enabled": false
     },
