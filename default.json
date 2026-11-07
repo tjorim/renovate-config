@@ -10,6 +10,17 @@
     "group:monorepos",
     "group:recommended"
   ],
+  "enabledManagers": [
+    "npm",
+    "pep621",
+    "cargo",
+    "gradle",
+    "gradle-wrapper",
+    "dockerfile",
+    "docker-compose",
+    "github-actions",
+    "git-submodules"
+  ],
   "timezone": "UTC",
   "schedule": [
     "* 18-23 * * 5"
@@ -87,16 +98,12 @@
     },
     {
       "description": [
-        "Dependabot never bumped the packageManager field or .node-version; keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
+        "Dependabot never bumped the packageManager field, engines or [build-system] requirements; keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
       ],
       "matchDepTypes": [
-        "packageManager"
-      ],
-      "enabled": false
-    },
-    {
-      "matchManagers": [
-        "nodenv"
+        "packageManager",
+        "engines",
+        "build-system.requires"
       ],
       "enabled": false
     },

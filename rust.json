@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Rust apps (scat, ElevenClock-rs)."
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": [
+        "Cargo"
+      ],
+      "matchManagers": [
+        "cargo"
+      ],
+      "addLabels": [
+        "rust"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>tjorim/renovate-config",
+    "github>tjorim/renovate-config:rust",
+    "github>tjorim/renovate-config:astro"
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "The windows and windows-* crates release together. Dependabot only matched windows-*."
+      ],
+      "matchManagers": [
+        "cargo"
+      ],
+      "matchPackageNames": [
+        "windows",
+        "windows-*"
+      ],
+      "groupName": "windows"
+    }
+  ]
+}

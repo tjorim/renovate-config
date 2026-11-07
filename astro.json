@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Astro docs sites (custom-mygrid, scat, ElevenClock-rs): one group for Astro and its integrations, and a weekly lockfile refresh for package-lock.json."
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": [
+        "Astro and its @astrojs integrations release together"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "astro",
+        "@astrojs/*"
+      ],
+      "groupName": "astro"
+    }
+  ]
+}

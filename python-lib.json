@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Groups for small Python libraries and integrations (pyrail, python-mygrid-*, ha-mygrid-*)."
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "pytest and its plugins"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "pytest*"
+      ],
+      "groupName": "testing"
+    },
+    {
+      "description": [
+        "Linters and type checkers"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "ruff",
+        "ty",
+        "mypy"
+      ],
+      "groupName": "linting"
+    }
+  ]
+}

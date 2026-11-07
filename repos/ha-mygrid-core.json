@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>tjorim/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "Dependabot only tracked GitHub Actions here, not the uv dependencies. Remove this rule to start tracking them."
+      ],
+      "matchManagers": [
+        "pep621"
+      ],
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Track git submodule pointers. Renovate's submodule manager is off by default."
+  ],
+  "git-submodules": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": [
+        "Submodule pointer bumps"
+      ],
+      "matchManagers": [
+        "git-submodules"
+      ],
+      "addLabels": [
+        "submodules"
+      ],
+      "commitMessagePrefix": "chore:"
+    }
+  ]
+}
