@@ -39,8 +39,10 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
   bumped `packageManager` or `.node-version`, so those are disabled here for parity (Dockerfiles pin pnpm/node too).
 - **`android-build` matches differently.** Gradle plugins are named `group:artifact`, and the pattern deliberately
   excludes `org.jetbrains.kotlinx:*`, which the Dependabot pattern `org.jetbrains.kotlin*` also matched.
-- **Only the managers Dependabot covered are enabled** (`enabledManagers` in `default.json`: npm, pep621/uv, cargo,
-  gradle, gradle-wrapper, dockerfile, docker-compose, github-actions, git-submodules). Left on, Renovate also bumps
+- **Only the managers Dependabot covered are enabled, plus `ansible-galaxy`** (`enabledManagers` in `default.json`: npm,
+  pep621/uv, cargo, gradle, gradle-wrapper, dockerfile, docker-compose, github-actions, git-submodules, ansible-galaxy).
+  `ansible-galaxy` reads `requirements.yml`, so pin collections to exact versions and Renovate opens a PR per bump with
+  the release notes; Dependabot has no equivalent. Left on, Renovate also bumps
   `.nvmrc`, `.python-version`, devcontainers, ansible-galaxy requirements, `engines` and `[build-system].requires`,
   which produced extra branches in the dry-runs. They are opt-in once the move is trusted.
 - **`ha-mygrid-core` has the Python manager disabled**, because Dependabot never tracked its uv/pip

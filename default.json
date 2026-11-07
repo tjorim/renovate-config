@@ -20,7 +20,8 @@
     "dockerfile",
     "docker-compose",
     "github-actions",
-    "git-submodules"
+    "git-submodules",
+    "ansible-galaxy"
   ],
   "timezone": "UTC",
   "schedule": [
