@@ -134,11 +134,12 @@
     },
     {
       "description": [
-        "Keep the precision of runtime versions: node:26-alpine, python:3.15-slim, node-version: 22 and python-version: '3.15' float within their major (or minor) on their own. Without this Renovate rewrites them to an exact release, then needs a PR for every patch."
+        "Keep the precision of runtime versions: node:26-alpine, python:3.15-slim, node-version: 22, python-version: '3.15' and bun-version: '1' float within their major (or minor) on their own. Without this Renovate rewrites them to an exact release, then needs a PR for every patch."
       ],
       "matchDepNames": [
         "node",
-        "python"
+        "python",
+        "bun"
       ],
       "matchManagers": [
         "dockerfile",
