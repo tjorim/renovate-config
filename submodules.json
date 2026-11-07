@@ -9,7 +9,8 @@
   "packageRules": [
     {
       "description": [
-        "Submodule pointer bumps"
+        "Submodule pointer bumps",
+        "Pointers track the tips of the project repos, which were already reviewed and merged there, so the base preset's minimumReleaseAge does not apply. Waiting would also miss the Monday window."
       ],
       "matchManagers": [
         "git-submodules"
@@ -17,7 +18,8 @@
       "addLabels": [
         "submodules"
       ],
-      "commitMessagePrefix": "chore:"
+      "commitMessagePrefix": "chore:",
+      "minimumReleaseAge": "0 days"
     }
   ]
 }

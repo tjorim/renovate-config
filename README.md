@@ -52,6 +52,9 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
   that still uses tags like `@v7`, the first run converts them: one update PR per action that moves a major tag to the
   exact version and its hash, plus one `pin-dependencies` PR for actions already on an exact version. After that
   Renovate keeps the hashes and version comments updated.
+- **Submodule pointers skip the release-age wait** (`submodules.json` sets `minimumReleaseAge: 0 days` for the
+  `git-submodules` manager). They follow the tips of repos you already reviewed and merged, and a 3-day wait would
+  miss a Monday-only window for anything merged after Friday night.
 - **Security updates are not configured here.** Keep Dependabot security updates / alerts on in each repo.
 
 ## Checked
