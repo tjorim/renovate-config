@@ -4,12 +4,6 @@
     "npm / pnpm groups shared by the frontend repos. Equivalent of the shared Dependabot groups."
   ],
   "rangeStrategy": "bump",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "description": [
-      "Refresh the pnpm lockfile weekly. Moves transitive packages in one PR instead of one PR each."
-    ]
-  },
   "packageRules": [
     {
       "matchDatasources": [

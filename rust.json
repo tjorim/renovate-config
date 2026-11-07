@@ -3,9 +3,6 @@
   "description": [
     "Rust apps (scat, ElevenClock-rs)."
   ],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
   "packageRules": [
     {
       "description": [

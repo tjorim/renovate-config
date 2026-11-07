@@ -27,6 +27,16 @@
   "schedule": [
     "* 18-23 * * 5"
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 4am on monday"
+    ],
+    "description": [
+      "Weekly lockfile refresh for every manager that has one (pnpm, npm, uv, cargo, gradle). Moves transitive packages in one PR instead of one PR each.",
+      "This is Renovate's own default window, not the Friday window of the other updates: lockfile maintenance has a separate schedule that the base schedule does not override."
+    ]
+  },
   "assignees": [
     "tjorim"
   ],

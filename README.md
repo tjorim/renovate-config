@@ -10,13 +10,13 @@ to this repo and a repo adds a `renovate.json` that extends it.
 
 | File | Purpose |
 |---|---|
-| `default.json` | Base: Friday 18:00 UTC window, labels, `deps:` commit style, 3-day `minimumReleaseAge`, GitHub Actions, Docker, compose, `codeql` group |
-| `js.json` | npm/pnpm groups shared by the frontends, `rangeStrategy: bump`, weekly `lockFileMaintenance` |
+| `default.json` | Base: Friday 18:00 UTC window, labels, `deps:` commit style, 3-day `minimumReleaseAge`, weekly lockfile maintenance, GitHub Actions, Docker, compose, `codeql` group |
+| `js.json` | npm/pnpm groups shared by the frontends, `rangeStrategy: bump` |
 | `python.json` | uv groups shared by the backends |
 | `android.json` | `android-build` group (AGP + Kotlin + KSP) |
 | `python-lib.json` | `testing` and `linting` groups for the small Python libs and HA integrations |
-| `astro.json` | `astro` group and a weekly `package-lock.json` refresh for the Astro sites |
-| `rust.json` | cargo: `rust` label and a weekly `Cargo.lock` refresh |
+| `astro.json` | `astro` group for the Astro sites |
+| `rust.json` | cargo: `rust` label |
 | `submodules.json` | turns on Renovate's git-submodule manager (off by default) |
 | `repos/<repo>.json` | Draft `renovate.json` for each repo: the `extends` list plus repo-only groups and directory labels/prefixes |
 
@@ -30,7 +30,11 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
 - **Renovate's built-in monorepo groups are switched off** (`ignorePresets` in `default.json`). Left on, they
   override these groups: `tailwindcss`, `vitest`, `oxlint` and `lucide-react` came out as `*-monorepo` branches.
 - **`lockFileMaintenance` replaces the transitive-package groups** (`babel`, `transitive`) and the `allow: all`
-  workaround. Transitive packages move in one lockfile PR instead of one PR each.
+  workaround. Transitive packages move in one lockfile PR instead of one PR each. It is enabled in `default.json`, so
+  it applies to every manager with a lockfile (pnpm, npm, uv, cargo, gradle), including Python-only repos. Its schedule
+  is **before 4am UTC on Monday**: lockfile maintenance has its own schedule (Renovate's default), which the base Friday
+  window does not override. It does not apply the 3-day release-age wait; pnpm's own `minimumReleaseAge` still limits
+  npm, but `uv lock --upgrade` has no age limit.
 - **`minimumReleaseAge: 3 days` is native.** Renovate proposes the newest release that is old enough. With
   `internalChecksFilter: strict` it does not open a PR for a younger one. This is what the Dependabot `cooldown`
   was approximating.
