@@ -47,9 +47,11 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
   dependencies. Remove the rule in `repos/<repo>.json` to start tracking them.
 - **`windows` crates group** in `ElevenClock-rs` matches `windows` and `windows-*`; Dependabot's pattern
   `windows-*` missed the `windows` crate itself.
-- **GitHub Actions are pinned by commit hash** (`helpers:pinGitHubActionDigests` in `default.json`), with the version as
-  a comment, matching the repos that already do this by hand. In a repo that still uses tags, Renovate's first run opens
-  one `pin-dependencies` PR with the pins (24 in `scat`'s dry-run); after that it keeps the hashes updated.
+- **GitHub Actions are pinned by commit hash with the exact version as a comment** (`helpers:pinGitHubActionDigestsToSemver`
+  in `default.json`), e.g. `actions/checkout@<sha> # v7.0.1`, matching the repos that already do this by hand. In a repo
+  that still uses tags like `@v7`, the first run converts them: one update PR per action that moves a major tag to the
+  exact version and its hash, plus one `pin-dependencies` PR for actions already on an exact version. After that
+  Renovate keeps the hashes and version comments updated.
 - **Security updates are not configured here.** Keep Dependabot security updates / alerts on in each repo.
 
 ## Checked
