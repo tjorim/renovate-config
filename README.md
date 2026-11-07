@@ -61,8 +61,10 @@ A repo's `renovate.json` is just `repos/<repo>.json`.
 
 ## Not checked
 
-- Label application, PR creation, `lockFileMaintenance` PR contents, the
-  dependency dashboard, GitHub Actions lookups (the dry-runs hit the API rate limit).
+- Anything the dry-runs cannot do: label application, real PR creation, `lockFileMaintenance` PR contents and the
+  dependency dashboard.
+- GitHub Actions digest lookups were only exercised for `scat`, using a GitHub token; the other dry-runs ran without
+  one and were rate-limited.
 - Dry-runs for daynest, travel, worktime, custom-mygrid, python-mygrid-*, ha-mygrid-voltbridge, ha-mygrid-core.
 - Submodule updates (`submodules.json`) in a real run: with a token, the app needs access to the submodule repos if they are private.
 - `ha-mygrid-modbus` produced no update branches in its dry-run (rate-limited), so its `ignoreDeps` is unexercised.
