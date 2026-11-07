@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>tjorim/renovate-config",
+    "github>tjorim/renovate-config:js"
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "rolldown ships per-platform @rolldown/binding-* packages that move with it"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "rolldown",
+        "@rolldown/*"
+      ],
+      "groupName": "rolldown"
+    },
+    {
+      "description": [
+        "Catch-all for the remaining @types packages. Excludes the ones owned by the shared react and charts groups."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@types/*",
+        "!@types/react",
+        "!@types/react-dom",
+        "!@types/d3-*"
+      ],
+      "groupName": "types"
+    },
+    {
+      "description": [
+        "package.json"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "package.json"
+      ],
+      "addLabels": [
+        "platform:frontend"
+      ]
+    }
+  ]
+}

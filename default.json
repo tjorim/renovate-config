@@ -1,0 +1,115 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Shared base for the tjorim repos: schedule, labels, commit style and the ecosystems every repo has."
+  ],
+  "extends": [
+    "config:recommended"
+  ],
+  "ignorePresets": [
+    "group:monorepos",
+    "group:recommended"
+  ],
+  "timezone": "UTC",
+  "schedule": [
+    "* 18-23 * * 5"
+  ],
+  "assignees": [
+    "tjorim"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 0,
+  "dependencyDashboard": true,
+  "semanticCommits": "disabled",
+  "commitMessagePrefix": "deps:",
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "description": [
+        "GitHub Actions"
+      ],
+      "matchManagers": [
+        "github-actions"
+      ],
+      "addLabels": [
+        "github-actions"
+      ],
+      "commitMessagePrefix": "ci:"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchPackageNames": [
+        "github/codeql-action",
+        "github/codeql-action/**"
+      ],
+      "groupName": "codeql"
+    },
+    {
+      "description": [
+        "Dockerfiles"
+      ],
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "addLabels": [
+        "docker"
+      ],
+      "commitMessagePrefix": "deps(docker):"
+    },
+    {
+      "description": [
+        "docker-compose files"
+      ],
+      "matchManagers": [
+        "docker-compose"
+      ],
+      "addLabels": [
+        "docker"
+      ],
+      "commitMessagePrefix": "deps(compose):"
+    },
+    {
+      "description": [
+        "npm / pnpm"
+      ],
+      "matchManagers": [
+        "npm"
+      ],
+      "addLabels": [
+        "npm"
+      ]
+    },
+    {
+      "description": [
+        "Dependabot never bumped the packageManager field or .node-version; keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
+      ],
+      "matchDepTypes": [
+        "packageManager"
+      ],
+      "enabled": false
+    },
+    {
+      "matchManagers": [
+        "nodenv"
+      ],
+      "enabled": false
+    },
+    {
+      "description": [
+        "Python"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "addLabels": [
+        "python"
+      ]
+    }
+  ]
+}

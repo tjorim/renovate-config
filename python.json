@@ -1,0 +1,124 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Python (uv) groups shared by the backends."
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "pep621"
+      ],
+      "rangeStrategy": "bump"
+    },
+    {
+      "description": [
+        "fastmcp pulls in mcp and mcp-types; cyclopts is its CLI dependency. Keep them moving together"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "fastmcp",
+        "fastmcp-slim",
+        "mcp",
+        "mcp-types",
+        "cyclopts"
+      ],
+      "groupName": "fastmcp"
+    },
+    {
+      "description": [
+        "Keep Pydantic, its validation core, and settings integration together"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "pydantic",
+        "pydantic-core",
+        "pydantic-settings"
+      ],
+      "groupName": "pydantic"
+    },
+    {
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "ruff",
+        "ty",
+        "pytest",
+        "pytest-asyncio"
+      ],
+      "groupName": "python-quality"
+    },
+    {
+      "description": [
+        "psycopg[binary] installs psycopg-binary; psycopg-pool etc. ship from the same project"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "psycopg*"
+      ],
+      "groupName": "psycopg"
+    },
+    {
+      "description": [
+        "Alembic is built on SQLAlchemy"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "sqlalchemy",
+        "alembic"
+      ],
+      "groupName": "sqlalchemy"
+    },
+    {
+      "description": [
+        "Token, OIDC and JOSE libraries are security-sensitive; review them together"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "authlib",
+        "joserfc",
+        "pyjwt",
+        "google-auth"
+      ],
+      "groupName": "auth"
+    },
+    {
+      "description": [
+        "FastAPI request stack and its async/multipart dependencies"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "fastapi",
+        "starlette",
+        "python-multipart",
+        "anyio"
+      ],
+      "groupName": "fastapi-stack"
+    },
+    {
+      "description": [
+        "markdown-it plugins are pinned against their core release"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "markdown-it-py",
+        "mdit-py-plugins"
+      ],
+      "groupName": "markdown"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Android / Gradle groups."
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "AGP, Kotlin and KSP must match each other; a split update breaks the build.",
+        "Gradle plugins are named group:artifact. kotlinx-* libraries are deliberately not matched: they version independently of the compiler."
+      ],
+      "matchManagers": [
+        "gradle"
+      ],
+      "matchPackageNames": [
+        "com.android.*",
+        "org.jetbrains.kotlin.*",
+        "org.jetbrains.kotlin:*",
+        "com.google.devtools.ksp*"
+      ],
+      "groupName": "android-build"
+    }
+  ]
+}

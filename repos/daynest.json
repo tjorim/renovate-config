@@ -1,0 +1,190 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>tjorim/renovate-config",
+    "github>tjorim/renovate-config:js",
+    "github>tjorim/renovate-config:python",
+    "github>tjorim/renovate-config:android"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "canvas-confetti",
+        "@types/canvas-confetti"
+      ],
+      "groupName": "canvas-confetti"
+    },
+    {
+      "description": [
+        "Schedule-X calendar component and its plugins"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@schedule-x/*"
+      ],
+      "groupName": "schedule-x"
+    },
+    {
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "dayjs"
+      ],
+      "groupName": "dayjs"
+    },
+    {
+      "description": [
+        "Apple PyObjC bindings are released as one family"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "pyobjc-*"
+      ],
+      "groupName": "pyobjc",
+      "matchFileNames": [
+        "custom_components/**"
+      ]
+    },
+    {
+      "description": [
+        "Windows WinRT bindings are released as one family"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "winrt-*"
+      ],
+      "groupName": "winrt",
+      "matchFileNames": [
+        "custom_components/**"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "pytest*",
+        "ruff",
+        "pyright",
+        "nodeenv"
+      ],
+      "groupName": "python-dev",
+      "matchFileNames": [
+        "python-daynest/**"
+      ]
+    },
+    {
+      "description": [
+        "frontend/**"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "frontend/**"
+      ],
+      "addLabels": [
+        "platform:frontend"
+      ]
+    },
+    {
+      "description": [
+        "dashboard/**"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "dashboard/**"
+      ],
+      "addLabels": [
+        "platform:dashboard"
+      ]
+    },
+    {
+      "description": [
+        "pebble/**"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "pebble/**"
+      ],
+      "addLabels": [
+        "platform:pebble"
+      ],
+      "commitMessagePrefix": "deps(pebble):"
+    },
+    {
+      "description": [
+        "backend/**"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchFileNames": [
+        "backend/**"
+      ],
+      "addLabels": [
+        "platform:backend"
+      ],
+      "commitMessagePrefix": "deps(backend):"
+    },
+    {
+      "description": [
+        "custom_components/**"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchFileNames": [
+        "custom_components/**"
+      ],
+      "addLabels": [
+        "platform:home-assistant"
+      ],
+      "commitMessagePrefix": "deps(ha):"
+    },
+    {
+      "description": [
+        "python-daynest/**"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchFileNames": [
+        "python-daynest/**"
+      ],
+      "addLabels": [
+        "platform:python-lib"
+      ],
+      "commitMessagePrefix": "deps(lib):"
+    },
+    {
+      "description": [
+        "android/**"
+      ],
+      "matchManagers": [
+        "gradle"
+      ],
+      "matchFileNames": [
+        "android/**"
+      ],
+      "addLabels": [
+        "platform:android"
+      ],
+      "commitMessagePrefix": "deps(android):"
+    }
+  ]
+}

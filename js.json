@@ -1,0 +1,288 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "npm / pnpm groups shared by the frontend repos. Equivalent of the shared Dependabot groups."
+  ],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "description": [
+      "Refresh the pnpm lockfile weekly. Moves transitive packages in one PR instead of one PR each."
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "groupName": "react"
+    },
+    {
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "vite",
+        "@vitejs/plugin-react"
+      ],
+      "groupName": "vite"
+    },
+    {
+      "description": [
+        "tailwindcss and its Vite plugin share one release train"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "tailwindcss",
+        "@tailwindcss/*"
+      ],
+      "groupName": "tailwind"
+    },
+    {
+      "description": [
+        "OXC toolchain: linter, formatter and parser"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "oxlint",
+        "oxfmt",
+        "oxc-parser"
+      ],
+      "groupName": "oxc"
+    },
+    {
+      "description": [
+        "Inlang i18n packages"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@inlang/*"
+      ],
+      "groupName": "i18n"
+    },
+    {
+      "description": [
+        "oidc-client-ts is the engine react-oidc-context wraps"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "oidc-client-ts",
+        "react-oidc-context"
+      ],
+      "groupName": "oidc"
+    },
+    {
+      "description": [
+        "Vitest and Testing Library tinybench is vitest's benchmark runner; it is a transitive dependency"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@testing-library/*",
+        "@vitest/*",
+        "vitest",
+        "tinybench"
+      ],
+      "groupName": "testing"
+    },
+    {
+      "description": [
+        "Browser APIs the tests run against; separate projects from Vitest, so reviewed on their own"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "happy-dom",
+        "fake-indexeddb"
+      ],
+      "groupName": "test-env"
+    },
+    {
+      "description": [
+        "msw's own stack: msw, its @msw/@mswjs packages, and the helpers and cookie/URL packages it ships with. Generic utilities it reaches (yargs, wrap-ansi, type-fest, graphql, ...) stay ungrouped."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "msw",
+        "@msw/*",
+        "@mswjs/*",
+        "@open-draft/until",
+        "@inquirer/*",
+        "tldts",
+        "tldts-core",
+        "tough-cookie",
+        "outvariant",
+        "rettime",
+        "headers-polyfill",
+        "until-async",
+        "is-node-process"
+      ],
+      "groupName": "msw"
+    },
+    {
+      "description": [
+        "Playwright and the axe-core integration used by the e2e suite"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@playwright/*",
+        "@axe-core/*"
+      ],
+      "groupName": "playwright"
+    },
+    {
+      "description": [
+        "TanStack Query packages must share one @tanstack/query-core; duplicate copies break QueryClient types"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@tanstack/react-query",
+        "@tanstack/react-query-devtools",
+        "@tanstack/query-persist-client-core"
+      ],
+      "groupName": "tanstack-query"
+    },
+    {
+      "description": [
+        "TanStack Router with its internals; seroval is router-core's serializer"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@tanstack/react-router",
+        "@tanstack/router-*",
+        "@tanstack/history",
+        "isbot",
+        "seroval",
+        "seroval-plugins"
+      ],
+      "groupName": "tanstack-router"
+    },
+    {
+      "description": [
+        "TanStack Table adapter and core must update together or pipelines fail"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@tanstack/react-table",
+        "@tanstack/table-core"
+      ],
+      "groupName": "tanstack-table"
+    },
+    {
+      "description": [
+        "TanStack DB packages all depend on @tanstack/db; mismatched versions cause type errors"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@tanstack/db",
+        "@tanstack/react-db",
+        "@tanstack/query-db-collection"
+      ],
+      "groupName": "tanstack-db"
+    },
+    {
+      "description": [
+        "@tanstack/charts pulls in the d3-* modules (d3-scale, d3-brush, d3-zoom, ...) as runtime dependencies; they release individually and must move with it. svelte stays ungrouped: inlang and oxfmt also depend on it"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@tanstack/charts",
+        "d3-*",
+        "@types/d3-*"
+      ],
+      "groupName": "charts"
+    },
+    {
+      "description": [
+        "Babel packages are transitive and must resolve to one version per major line"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@babel/*"
+      ],
+      "groupName": "babel"
+    },
+    {
+      "description": [
+        "TypeScript and its runtime helpers"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "typescript",
+        "tslib"
+      ],
+      "groupName": "typescript"
+    },
+    {
+      "description": [
+        "Base UI is the shipped runtime (@base-ui/react and its pinned @base-ui/utils); its behaviour changes get their own PR"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@base-ui/*"
+      ],
+      "groupName": "base-ui"
+    },
+    {
+      "description": [
+        "shadcn CLI and its registry tooling (dev-only). Kept apart from the Base UI runtime group so a regression is attributable to one of them (docs/ui-maintenance.md)"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "shadcn",
+        "@shadcn/*"
+      ],
+      "groupName": "shadcn"
+    },
+    {
+      "description": [
+        "Icon set kept in its own group so icon releases are reviewed separately"
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "lucide-react"
+      ],
+      "groupName": "lucide"
+    }
+  ]
+}
