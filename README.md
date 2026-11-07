@@ -3,8 +3,8 @@
 Shared [Renovate](https://docs.renovatebot.com) presets for the tjorim repos (bordertax, champagnefestival,
 daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files with one set of presets.
 
-**Status: draft, not published, not active anywhere.** Nothing here affects a repo until the preset repo exists
-on GitHub, the Renovate app is installed and a repo adds a `renovate.json`.
+**Status: published (private), not active anywhere.** Nothing here affects a repo until the Renovate app has access
+to this repo and a repo adds a `renovate.json` that extends it.
 
 ## Layout
 
