@@ -3,8 +3,7 @@
 Shared [Renovate](https://docs.renovatebot.com) presets for the tjorim repos (bordertax, champagnefestival,
 daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files with one set of presets.
 
-**Status: published (private), not active anywhere.** Nothing here affects a repo until the Renovate app has access
-to this repo and a repo adds a `renovate.json` that extends it.
+**Status: public and being adopted.** A preset affects a repository only when its `renovate.json` extends it and the Renovate app has access to that repository.
 
 ## Layout
 
@@ -14,6 +13,7 @@ to this repo and a repo adds a `renovate.json` that extends it.
 | `js.json` | npm/pnpm groups shared by the frontends, `rangeStrategy: bump` |
 | `python.json` | uv groups shared by the backends |
 | `android.json` | `android-build` group (AGP + Kotlin + KSP) |
+| `home-assistant.json` | Base + Python library groups; enables Python, GitHub Actions and HA manifest requirements for custom integrations |
 | `python-lib.json` | `testing` and `linting` groups for the small Python libs and HA integrations |
 | `astro.json` | `astro` group for the Astro sites |
 | `rust.json` | cargo: `rust` label |
@@ -21,6 +21,10 @@ to this repo and a repo adds a `renovate.json` that extends it.
 | `repos/<repo>.json` | Draft `renovate.json` for each repo: the `extends` list plus repo-only groups and directory labels/prefixes |
 
 A repo's `renovate.json` is just `repos/<repo>.json`.
+
+Custom Home Assistant integrations extend `github>tjorim/renovate-config:home-assistant`. This preset intentionally replaces the base manager allowlist with `pep621`, `github-actions` and `homeassistant-manifest`. Keep library-specific grouping and HA compatibility rules in the consuming repository: each library group spans its runtime `manifest.json` requirement and development pin in `pyproject.toml`. CI should verify matching exact pins without hard-coding a particular library release.
+
+For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its scoped Python rule prevents independent transport upgrades; CI compares the test pins against the installed HA Modbus manifest. Update those pins together with the HA test baseline.
 
 ## Differences from the Dependabot setup
 
