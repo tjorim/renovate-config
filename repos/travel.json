@@ -21,7 +21,7 @@
     },
     {
       "description": [
-        "Transitive packages that Dependabot would otherwise open one PR each for"
+        "Transitive packages that would otherwise get one PR each"
       ],
       "matchDatasources": [
         "npm"

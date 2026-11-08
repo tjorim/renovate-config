@@ -14,6 +14,7 @@ daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files 
 | `python.json` | uv groups shared by the backends |
 | `android.json` | `android-build` group (AGP + Kotlin + KSP) |
 | `home-assistant.json` | Base + Python library groups; enables Python, GitHub Actions and HA manifest requirements for custom integrations |
+| `python-library.json` | Standalone Python libraries: base + Python groups and lower-bound version bumps |
 | `python-lib.json` | `testing` and `linting` groups for the small Python libs and HA integrations |
 | `astro.json` | `astro` group for the Astro sites |
 | `rust.json` | cargo: `rust` label |
@@ -94,3 +95,11 @@ For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its s
 4. Running both tools duplicates PRs. When Renovate is trusted, delete `.github/dependabot.yml` (this stops
    Dependabot *version* updates; security updates stay on via the repo setting) and close the leftover Dependabot PRs.
 5. Roll out to the other four repos.
+
+## Automated validation and drift checks
+
+Pull requests and main run strict validation of every preset/example with Renovate 44.222.4, plus representative HA, Python library, and Rust/Astro extraction fixtures. Extraction resolves the candidate commit, rather than silently testing only the published main configuration. Inherited preset references retain their declared refs. Fork PRs may need a maintainer branch because the candidate commit must be readable in this repository.
+
+A separate weekly/manual workflow compares examples with consumers’ default-branch configs. It fails on semantic differences but ignores JSON formatting and object key order; rule order remains significant. It does not change repositories or open issues. Unadopted/inaccessible repositories returning 404 are reported as skipped. Temporary drift is expected while a shared preset PR and its dependent consumer PRs merge; re-run the check afterwards.
+
+Standalone libraries can extend `github>tjorim/renovate-config:python-library` to share the existing `pep621` lower-bound bump policy. HA integrations retain exact pins and continue using the Home Assistant preset.
