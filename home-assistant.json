@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Home Assistant custom integrations: shared Python groups and coordinated runtime manifest/development dependency updates."
+  ],
+  "extends": [
+    "github>tjorim/renovate-config",
+    "github>tjorim/renovate-config:python-lib"
+  ],
+  "enabledManagers": [
+    "pep621",
+    "github-actions",
+    "homeassistant-manifest"
+  ]
+}
