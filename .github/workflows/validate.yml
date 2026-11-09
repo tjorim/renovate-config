@@ -15,7 +15,9 @@ jobs:
         with:
           node-version: '24'
       - name: Validate every preset and example
-        run: npx --yes --package renovate@44.222.4 renovate-config-validator --strict --no-global ./*.json repos/*.json
+        run: |
+          version=$(cat renovate-version.txt)
+          npx --yes --package "renovate@$version" renovate-config-validator --strict --no-global ./*.json repos/*.json
       - name: Check representative dependency extraction
         env:
           GITHUB_COM_TOKEN: ${{ github.token }}

@@ -46,7 +46,7 @@ def main():
             subprocess.run(['git', 'init', '-q'], cwd=root, check=True)
             subprocess.run(['git', 'add', '.'], cwd=root, check=True)
             env = dict(os.environ, LOG_LEVEL='debug')
-            result = subprocess.run(['npx', '--yes', '--package', 'renovate@44.222.4', 'renovate', '--platform=local', '--dry-run=extract'], cwd=root, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            result = subprocess.run(['npx', '--yes', '--package', 'renovate@' + (ROOT / 'renovate-version.txt').read_text().strip(), 'renovate', '--platform=local', '--dry-run=extract'], cwd=root, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             missing = [m for m in managers if f'Found {m} package files' not in result.stdout]
             if result.returncode or missing or 'ERROR:' in result.stdout:
                 # Renovate masks credentials in its logs; show diagnostics on failures only.
