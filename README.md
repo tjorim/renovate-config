@@ -94,8 +94,12 @@ For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its s
 
 ## Automated validation and drift checks
 
-Pull requests and main run strict validation of every preset/example with Renovate 44.222.4, plus representative HA, Python library, and Rust/Astro extraction fixtures. Extraction resolves the candidate commit, rather than silently testing only the published main configuration. Inherited preset references retain their declared refs. Fork PRs may need a maintainer branch because the candidate commit must be readable in this repository.
+Pull requests and main run strict validation of every preset/example with the Renovate version pinned in `renovate-version.txt`, plus representative HA, Python library, and Rust/Astro extraction fixtures. Extraction resolves the candidate commit, rather than silently testing only the published main configuration. Inherited preset references retain their declared refs. Fork PRs may need a maintainer branch because the candidate commit must be readable in this repository.
 
 A separate weekly/manual workflow compares examples with consumers’ default-branch configs. It fails on semantic differences but ignores JSON formatting and object key order; rule order remains significant. It does not change repositories or open issues. Unadopted/inaccessible repositories returning 404 are reported as skipped. Temporary drift is expected while a shared preset PR and its dependent consumer PRs merge; re-run the check afterwards.
 
 Standalone libraries can extend `github>tjorim/renovate-config:python-library` to share the existing `pep621` lower-bound bump policy. HA integrations retain exact pins and continue using the Home Assistant preset.
+
+## Self-maintenance
+
+This repository’s `renovate.json` opts into the shared base but restricts updates to GitHub Actions workflows and `renovate-version.txt`. The version file is the single Renovate CLI pin used by both strict validation and extraction checks, so a CLI update is tested with the proposed version throughout CI. Preset definitions, repo examples and embedded fixture dependencies are not update targets. Updates retain the shared review, release-age and scheduling policy.

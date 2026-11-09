@@ -1,5 +1,31 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": ["This repo only holds shared presets; Renovate must not process it."],
-  "enabled": false
+  "description": [
+    "Maintain this repository\u2019s CI actions and single Renovate CLI version pin only. Preset examples and extraction fixture dependencies are not update targets."
+  ],
+  "extends": [
+    "github>tjorim/renovate-config"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "custom.regex"
+  ],
+  "includePaths": [
+    ".github/workflows/**",
+    "renovate-version.txt"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^renovate-version\\.txt$/"
+      ],
+      "matchStrings": [
+        "^(?<currentValue>\\d+\\.\\d+\\.\\d+)\\s*$"
+      ],
+      "depNameTemplate": "renovate",
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver"
+    }
+  ]
 }
