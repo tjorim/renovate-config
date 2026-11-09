@@ -111,12 +111,11 @@
     },
     {
       "description": [
-        "Dependabot never bumped the packageManager field, engines, [build-system] requirements or requires-python (the minimum supported Python is a policy choice, not a dependency); keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
+        "Keep packageManager/engines and the minimum supported Python version under manual policy control. Python build-system requirements are dependencies and receive ordinary reviewed updates."
       ],
       "matchDepTypes": [
         "packageManager",
         "engines",
-        "build-system.requires",
         "requires-python"
       ],
       "enabled": false

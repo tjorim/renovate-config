@@ -52,8 +52,9 @@ For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its s
   pep621/uv, cargo, gradle, gradle-wrapper, dockerfile, docker-compose, github-actions, git-submodules, ansible-galaxy).
   `ansible-galaxy` reads `requirements.yml`, so pin collections to exact versions and Renovate opens a PR per bump with
   the release notes; Dependabot has no equivalent. Left on, Renovate also bumps
-  `.nvmrc`, `.python-version`, devcontainers, ansible-galaxy requirements, `engines` and `[build-system].requires`,
+  `.nvmrc`, `.python-version`, devcontainers, ansible-galaxy requirements and `engines`,
   which produced extra branches in the dry-runs. They are opt-in once the move is trusted.
+- **Python build tools are tracked.** `[build-system].requires` dependencies such as Hatchling, hatch-vcs and setuptools receive ordinary reviewed updates through `pep621`, with the shared release-age and scheduling policy. `requires-python` remains disabled because changing the support floor is a policy decision.
 - **`ha-mygrid-core` has the Python manager disabled**, because Dependabot never tracked its uv/pip
   dependencies. Remove the rule in `repos/<repo>.json` to start tracking them.
 - **`windows` crates group** in `ElevenClock-rs` matches `windows` and `windows-*`; Dependabot's pattern
