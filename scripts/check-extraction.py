@@ -7,12 +7,21 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = {
-    'ha': (['home-assistant'], {'pep621', 'github-actions', 'homeassistant-manifest'}, {
+    'ha': (['home-assistant'], {'pep621', 'github-actions', 'homeassistant-manifest', 'pyenv'}, {
+        '.python-version': '3.14.2\n',
         'pyproject.toml': '[project]\nname="fixture"\nversion="0.0.0"\ndependencies=["mygrid-modbus==0.1.1"]\n',
         'custom_components/fixture/manifest.json': '{"domain":"fixture","name":"Fixture","version":"0.0.0","requirements":["mygrid-modbus==0.1.1"]}',
     }),
     'python-library': (['python-library'], {'pep621', 'github-actions'}, {
         'pyproject.toml': '[project]\nname="fixture"\nversion="0.0.0"\ndependencies=["aiohttp>=3.10"]\n',
+    }),
+    'toolchains': (['default'], {'npm', 'nvm', 'nodenv', 'pyenv', 'devcontainer', 'dockerfile', 'custom.regex', 'github-actions'}, {
+        '.nvmrc': '24.13.0\n',
+        '.node-version': '24.13.0\n',
+        '.python-version': '3.14.2\n',
+        'package.json': '{"name":"fixture","private":true,"packageManager":"pnpm@12.15.0","engines":{"node":"24.13.0","pnpm":">=12"}}',
+        'Dockerfile.mcp': 'FROM node:24.13.0\nRUN npm install -g pnpm@12.15.0\n',
+        '.devcontainer/devcontainer.json': '{"image":"mcr.microsoft.com/devcontainers/python:3.12","features":{"ghcr.io/devcontainers-extra/features/uv:1":{}}}',
     }),
     'rust-site': (['default', 'rust', 'astro'], {'cargo', 'npm', 'github-actions'}, {
         'Cargo.toml': '[package]\nname="fixture"\nversion="0.0.0"\nedition="2021"\n[dependencies]\nserde="1"\n',

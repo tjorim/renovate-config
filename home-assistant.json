@@ -10,6 +10,8 @@
   "enabledManagers": [
     "pep621",
     "github-actions",
-    "homeassistant-manifest"
+    "homeassistant-manifest",
+    "pyenv",
+    "devcontainer"
   ]
 }
