@@ -22,7 +22,11 @@
     "nodenv",
     "github-actions",
     "git-submodules",
-    "ansible-galaxy"
+    "ansible-galaxy",
+    "nvm",
+    "pyenv",
+    "devcontainer",
+    "custom.regex"
   ],
   "timezone": "UTC",
   "schedule": [
@@ -111,12 +115,9 @@
     },
     {
       "description": [
-        "Dependabot never bumped the packageManager field, engines, [build-system] requirements or requires-python (the minimum supported Python is a policy choice, not a dependency); keep parity. Dockerfiles pin pnpm and node too and say to keep them in sync."
+        "The minimum supported Python version is a policy choice; toolchain and build dependency pins receive reviewed updates."
       ],
       "matchDepTypes": [
-        "packageManager",
-        "engines",
-        "build-system.requires",
         "requires-python"
       ],
       "enabled": false
@@ -146,6 +147,91 @@
         "github-actions"
       ],
       "versioning": "docker"
+    },
+    {
+      "description": [
+        "Supported engine ranges are policy; exact toolchain pins can be updated."
+      ],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDepTypes": [
+        "engines"
+      ],
+      "enabled": false
+    },
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDepTypes": [
+        "engines"
+      ],
+      "matchCurrentValue": "/^v?\\d+\\.\\d+\\.\\d+$/",
+      "enabled": true
+    },
+    {
+      "description": [
+        "Keep packageManager and hard-coded pnpm installs in the same PR."
+      ],
+      "matchPackageNames": [
+        "pnpm"
+      ],
+      "groupName": "pnpm"
+    },
+    {
+      "description": [
+        "Review Node version files, exact engines and Docker pins together."
+      ],
+      "matchManagers": [
+        "npm",
+        "nvm",
+        "nodenv",
+        "dockerfile",
+        "github-actions"
+      ],
+      "matchDepNames": [
+        "node"
+      ],
+      "groupName": "node-toolchain"
+    },
+    {
+      "description": [
+        "Use Python release metadata for development interpreter pins; expose patch updates separately from blocked minor upgrades."
+      ],
+      "matchManagers": [
+        "pyenv"
+      ],
+      "overrideDatasource": "python-version",
+      "versioning": "pep440",
+      "separateMinorPatch": true
+    },
+    {
+      "description": [
+        "Maintain the selected development Python minor; changing it is deliberate."
+      ],
+      "matchManagers": [
+        "pyenv"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
+      "enabled": false
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile(?:\\.[^/]*)?$/"
+      ],
+      "matchStrings": [
+        "npm install -g pnpm@(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "pnpm",
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "semver"
     }
   ]
 }

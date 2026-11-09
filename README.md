@@ -23,7 +23,7 @@ daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files 
 
 A repo's `renovate.json` is just `repos/<repo>.json`.
 
-Custom Home Assistant integrations extend `github>tjorim/renovate-config:home-assistant`. This preset intentionally replaces the base manager allowlist with `pep621`, `github-actions` and `homeassistant-manifest`. Keep library-specific grouping and HA compatibility rules in the consuming repository: each library group spans its runtime `manifest.json` requirement and development pin in `pyproject.toml`. CI should verify matching exact pins without hard-coding a particular library release.
+Custom Home Assistant integrations extend `github>tjorim/renovate-config:home-assistant`. This preset intentionally replaces the base manager allowlist with `pep621`, `github-actions`, `homeassistant-manifest`, `pyenv` and `devcontainer`. Keep library-specific grouping and HA compatibility rules in the consuming repository: each library group spans its runtime `manifest.json` requirement and development pin in `pyproject.toml`. CI should verify matching exact pins without hard-coding a particular library release.
 
 For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its scoped Python rule prevents independent transport upgrades; CI compares the test pins against the installed HA Modbus manifest. Update those pins together with the HA test baseline.
 
@@ -44,16 +44,12 @@ For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its s
   `internalChecksFilter: strict` it does not open a PR for a younger one. This is what the Dependabot `cooldown`
   was approximating.
 - **Major updates get their own PR** (Renovate's default), even inside a group (`major-i18n`).
-- **Not carried over:** the single-package `async` group in daynest's `custom_components`; Dependabot never
-  bumped `packageManager` or `.node-version`, so those are disabled here for parity (Dockerfiles pin pnpm/node too).
+- **Toolchain pins are tracked.** `packageManager`, exact `engines` versions, `.node-version`, `.nvmrc`, `.python-version` and devcontainers receive reviewed updates. Supported `engines` ranges and `requires-python` remain manual policy. Python version files receive patch updates within the selected minor.
+- **Coordinated tools:** Node pins are grouped across version files, exact engines, actions and Docker images. pnpm pins are grouped across package manifests and hard-coded `npm install -g pnpm@…` Dockerfile commands, detected by the shared regex manager. `Dockerfile` and `Dockerfile.*` are supported. No consumer changes are needed for existing inherited presets.
 - **`android-build` matches differently.** Gradle plugins are named `group:artifact`, and the pattern deliberately
   excludes `org.jetbrains.kotlinx:*`, which the Dependabot pattern `org.jetbrains.kotlin*` also matched.
-- **Only the managers Dependabot covered are enabled, plus `ansible-galaxy`** (`enabledManagers` in `default.json`: npm,
-  pep621/uv, cargo, gradle, gradle-wrapper, dockerfile, docker-compose, github-actions, git-submodules, ansible-galaxy).
-  `ansible-galaxy` reads `requirements.yml`, so pin collections to exact versions and Renovate opens a PR per bump with
-  the release notes; Dependabot has no equivalent. Left on, Renovate also bumps
-  `.nvmrc`, `.python-version`, devcontainers, ansible-galaxy requirements, `engines` and `[build-system].requires`,
-  which produced extra branches in the dry-runs. They are opt-in once the move is trusted.
+- **Manager coverage:** the base enables the existing application managers plus `nvm`, `pyenv`, `devcontainer` and a narrowly scoped Dockerfile pnpm regex manager. Managers without matching files have no effect. The HA preset also enables Python version files and devcontainers despite its narrower manager allowlist.
+- **Python build tools are tracked.** `[build-system].requires` dependencies such as Hatchling, hatch-vcs and setuptools receive ordinary reviewed updates through `pep621`, with the shared release-age and scheduling policy. `requires-python` remains disabled because changing the support floor is a policy decision.
 - **`ha-mygrid-core` has the Python manager disabled**, because Dependabot never tracked its uv/pip
   dependencies. Remove the rule in `repos/<repo>.json` to start tracking them.
 - **`windows` crates group** in `ElevenClock-rs` matches `windows` and `windows-*`; Dependabot's pattern
