@@ -15,7 +15,7 @@ CASES = {
     'python-library': (['python-library'], {'pep621', 'github-actions'}, {
         'pyproject.toml': '[project]\nname="fixture"\nversion="0.0.0"\ndependencies=["aiohttp>=3.10"]\n',
     }),
-    'toolchains': (['default'], {'npm', 'nvm', 'nodenv', 'pyenv', 'devcontainer', 'dockerfile', 'custom.regex', 'github-actions'}, {
+    'toolchains': (['default'], {'npm', 'nvm', 'nodenv', 'pyenv', 'devcontainer', 'dockerfile', 'regex', 'github-actions'}, {
         '.nvmrc': '24.13.0\n',
         '.node-version': '24.13.0\n',
         '.python-version': '3.14.2\n',

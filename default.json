@@ -197,6 +197,17 @@
     },
     {
       "description": [
+        "Use Python release metadata for development interpreter pins; expose patch updates separately from blocked minor upgrades."
+      ],
+      "matchManagers": [
+        "pyenv"
+      ],
+      "overrideDatasource": "python-version",
+      "versioning": "pep440",
+      "separateMinorPatch": true
+    },
+    {
+      "description": [
         "Maintain the selected development Python minor; changing it is deliberate."
       ],
       "matchManagers": [
