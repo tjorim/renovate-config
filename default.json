@@ -51,7 +51,9 @@
   ],
   "prConcurrentLimit": 20,
   "prHourlyLimit": 0,
-  "dependencyDashboard": true,
+  "dependencyDashboard": {
+    "enabled": true
+  },
   "semanticCommits": "disabled",
   "commitMessagePrefix": "deps:",
   "minimumReleaseAge": "3 days",
