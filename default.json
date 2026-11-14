@@ -30,7 +30,8 @@
   ],
   "timezone": "UTC",
   "schedule": [
-    "* 18-23 * * 5"
+    "* 18-23 * * 5",
+    "* 0-11 * * 6"
   ],
   "lockFileMaintenance": {
     "enabled": true,

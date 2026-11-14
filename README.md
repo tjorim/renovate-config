@@ -9,7 +9,7 @@ daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files 
 
 | File | Purpose |
 |---|---|
-| `default.json` | Base: Friday 18:00 UTC window, labels, `deps:` commit style, 3-day `minimumReleaseAge`, weekly lockfile maintenance, GitHub Actions, Docker, compose, `codeql` group |
+| `default.json` | Base: Friday 18:00 UTC to Saturday 12:00 UTC window, labels, `deps:` commit style, 3-day `minimumReleaseAge`, weekly lockfile maintenance, GitHub Actions, Docker, compose, `codeql` group |
 | `js.json` | npm/pnpm groups shared by the frontends, `rangeStrategy: bump` |
 | `python.json` | uv groups shared by the backends |
 | `android.json` | `android-build` group (AGP + Kotlin + KSP) |
@@ -62,6 +62,9 @@ For `ha-mygrid-modbus`, Home Assistant owns the shared transport versions. Its s
 - **Submodule pointers skip the release-age wait** (`submodules.json` sets `minimumReleaseAge: 0 days` for the
   `git-submodules` manager). They follow the tips of repos you already reviewed and merged, and a 3-day wait would
   miss a Monday-only window for anything merged after Friday night.
+- **The update window runs Friday 18:00 UTC to Saturday 12:00 UTC**, not just Friday evening. The hosted app does not
+  run every repo every hour, and on 2026-11-13 champagnefestival had no run between 16:53 and 00:05 UTC, so it created
+  no PRs that week. Saturday morning gives a missed Friday run a second chance.
 - **Security updates are not configured here.** Keep Dependabot security updates / alerts on in each repo.
 
 ## Checked
