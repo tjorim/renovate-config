@@ -17,7 +17,7 @@ daynest, travel, worktime). It replaces five hand-synced `dependabot.yml` files 
 | `python-library.json` | Standalone Python libraries: base + Python groups and lower-bound version bumps |
 | `python-lib.json` | `testing` and `linting` groups for the small Python libs and HA integrations |
 | `astro.json` | `astro` group for the Astro sites |
-| `rust.json` | cargo: `rust` label |
+| `rust.json` | cargo: `rust` label, `clap` group |
 | `submodules.json` | turns on Renovate's git-submodule manager (off by default) |
 | `repos/<repo>.json` | Draft `renovate.json` for each repo: the `extends` list plus repo-only groups and directory labels/prefixes |
 
